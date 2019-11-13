@@ -4,7 +4,6 @@ botaoAdicionar.addEventListener("click", function(event) {
 
     var form = document.querySelector("#form-adiciona");
     var paciente = obtemPAcienteDoFormulario(form);
-    var pacienteTr = montaTr(paciente);
 
     var erros = validaPacientes(paciente);
     if(erros.length > 0){
@@ -12,10 +11,9 @@ botaoAdicionar.addEventListener("click", function(event) {
         return;
     }
 
-    var tabela = document.querySelector("#tabela-pacientes");
-    tabela.appendChild(pacienteTr);
-    form.reset();
+    adicionaPacienteNaTabela(paciente);
 
+    form.reset();
     var menssagensErro = document.querySelector("#menssagens-erro");
     menssagensErro.innerHTML = "";
 
@@ -76,4 +74,10 @@ function exibeMenssagemDeErro(erros){
         li.textContent = erro;
         ul.appendChild(li);
     });
+}
+
+function adicionaPacienteNaTabela(paciente){
+    var pacienteTr = montaTr(paciente);
+    var tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr);
 }
